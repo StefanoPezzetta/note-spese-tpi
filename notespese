@@ -1,0 +1,17 @@
+note spese:
+	utente
+	data nota spese
+	descrizione breve(es: hotel, taxi, cena)
+	costo
+
+scrivere un piano di test
+
+
+
+
+pagina di registrazione/login
+
+pagina in cui è possibile AGGIUNGERE UNA NOTA o VISUALIZZARE LE PROPRIE NOTE
+
+aggiungere nota: data, descrizione, costo
+visualizzare note: visualizza le tue note con possibilità di eliminarle, modificarle o filtrarle per data
