@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require("config.php"); //parametri di connessione
 $mydb = new mysqli(SERVER, UTENTE, PASSWORD, DATABASE);
 if ($mydb->connect_errno) {
@@ -20,6 +20,13 @@ if ($mydb->connect_errno) {
             $stmt->close();
 
             if ($hash !== null && password_verify($pw, $hash)==true) {
+                $stmt2 = $mydb->prepare("SELECT id FROM utente WHERE email = ?");
+                $stmt2->bind_param("s", $email);
+                $stmt2->execute();
+                $stmt2->bind_result($user);
+                $stmt2->fetch();
+                $stmt2->close();
+                $_SESSION["user"]=$user;
                 header("Location: home.php");
             }
         } else {
