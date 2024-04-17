@@ -29,20 +29,21 @@ if ($num_rows >= 1) {
     echo "cacca";
 }else{
     $stmt2 = $mydb->prepare("INSERT INTO utente (email, pw, nome, cognome) VALUES (?, ?, ?, ?)");
-        $stmt2->bind_param("ssss", $email, $hash, $nome, $cognome);
-        $stmt2->execute();
-        $stmt2->close(); 
+    $stmt2->bind_param("ssss", $email, $hash, $nome, $cognome);
+    $stmt2->execute();
+    $stmt2->close(); 
 
-        $stmt3 = $mydb->prepare("SELECT id FORM utente WHERE email = ?");
-        $stmt3->bind_param("s", $email);
-        if ($stmt3->execute()) {
-            $stmt3->bind_result($id);
-            $_SESSION["user"] = $id;
-            }
-        $stmt3->close();
-        header("Location: home.php");
+    $stmt3 = $mydb->prepare("SELECT id FROM utente WHERE email = ?");
+    $stmt3->bind_param("s", $email);
+    if ($stmt3->execute()) {
+        $stmt3->bind_result($user);
+        $stmt3->fetch();
+        $_SESSION["user"] = $user;
+    }
+    $stmt3->close();
+    header("Location: home.php");
 
-        }
+}
             
 
 

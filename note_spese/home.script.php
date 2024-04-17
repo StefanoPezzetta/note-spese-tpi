@@ -20,7 +20,7 @@ if ($stmt->execute()) {
             "costo" => $costo,
         ];
     }
-    
+    $_SESSION['notes'] = $result;
     $stmt->close();
 } else {
     // Gestione degli errori durante l'esecuzione della query

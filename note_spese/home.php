@@ -26,7 +26,7 @@
 
     
     <form action="home.modify.script.php" method="POST" id="formModificaNota" class="hidden">
-        <input type="text" id="idNotaModifica" name="idNotaModifica">
+        <input type="hidden" id="idNotaModifica" name="idNotaModifica">
         <label for="descrizione">Descrizione:</label>
         <input type="text" id="descrizioneModifica" name="descrizioneModifica"><br>
         <label for="costo">Costo:</label>
@@ -39,11 +39,15 @@
 
 
 
-    <button onclick='filtraNote'>Filtra</button>
-    <form action="home.filter.script.php" method="POST" id="formModificaNota" class="hidden">
-        <input type="number" id="costoModifica" name="costoModifica"><br>
-        <label for="data">Data:</label> 
-    </form>
+    <button onclick='filtraForm()'>Filtra</button>
+    <div id = "formFiltraNota" class="hidden">
+        <label for="data">Data inizio:</label> 
+        <input type="date" id="dataInizio" name="dataInizio"><br>
+        <label for="data">Data fine:</label>
+        <input type="date" id="dataFine" name="dataFine"><br>
+        <button onclick="filtraData(document.getElementById('dataInizio').value, document.getElementById('dataFine').value)">Filtra</button>
+    </div>
+        
 
 
 <!-- 
@@ -83,6 +87,9 @@
                 console.error('Errore nella fetch:', error.message);
             }
     }
+
+
+
     async function modifyElementFromServer(id, descrizione, costo, data) {
             const dataToSend = {
                 id: id,
@@ -108,7 +115,10 @@
                 console.error('Errore nella fetch:', error.message);
             }
     }
-    async function createPage() {
+
+
+
+    async function getData() {
     // Esegui una richiesta GET alla pagina PHP desiderata
             fetch('home.script.php')
                 .then(response => response.json()) // Assicurati che la risposta sia in formato JSON
@@ -121,13 +131,23 @@
                     }
 
                     // Memorizza i dati ricevuti nella variabile notes
-                    const notes = data;
+                    let notes = data;
 
                     // Ora puoi utilizzare la variabile notes per accedere ai dati ricevuti
                     console.log(notes); // Esempio di utilizzo: visualizza i dati nella console
 
-                    // Creazione degli elementi HTML basati sui dati ricevuti
-                    const elementiDiv = document.getElementById('elementi');
+                    createPage(notes);
+                })
+                .catch(error => console.error('Si è verificato un errore:', error));
+    }
+
+
+    function createPage(notes){
+        if(notes == 0){
+            console.log("cacca");
+        }
+        // Creazione degli elementi HTML basati sui dati ricevuti
+       else{ const elementiDiv = document.getElementById('elementi');
                     for (let i = 0; i < notes.length; i++) {
                         const nota = notes[i];
                         const elemento = document.createElement('div');
@@ -166,21 +186,39 @@
                         elemento.appendChild(bottoneDelete);
                         elemento.appendChild(bottoneModify);
                         elementiDiv.appendChild(elemento);
-                    }
-                })
-                .catch(error => console.error('Si è verificato un errore:', error));
+                    }}
     }
 
 
 
-    async function filtraNote(){
-        const dataToSend = {
-                data: data,
+    async function getSessionData(){
+        fetch('getSessionData.php')
+        .then(response => response.json())
+        .then(data => {
+            // Utilizza i dati ottenuti dalla sessione PHP
+            console.log(data);
+            createPage(data);
+        })
+        .catch(error => console.error('Errore durante il recupero dei dati della sessione:', error));
+    }
+
+
+
+    function filtraForm(){
+        document.getElementById('formFiltraNota').classList.remove('hidden');
+    }
+
+
+
+    async function filtraData(dataInizio, dataFine) {
+            const dataToSend = {
+                dataInizio: dataInizio,
+                dataFine:dataFine,
             };
             console.log(dataToSend);
 
             try {
-                const response = await fetch('home.modify.script.php', {
+                const response = await fetch('home.filter.script.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -191,10 +229,22 @@
                 if (!response.ok) {
                     throw new Error(`Errore durante la richiesta al server. Codice di stato: ${response.status}`);
                 }
+                 const result = await response.json();
+                 console.log(result);
+
+                 if (result == 0) {
+                    // Gestisci il caso in cui il server restituisce 0
+                    console.log("Il server ha restituito 0.");
+                }
+                location.reload();
+                
+ 
             } catch (error) {
+                location.reload();  /* riguardala */
                 console.error('Errore nella fetch:', error.message);
             }
     }
+
 
 
 
@@ -217,6 +267,9 @@
             }
         });
 
+
+
+
         function deleteElement(id){
             deleteDataFromServer(id).then(() => {
                 location.reload();
@@ -227,22 +280,23 @@
                                     console.error('Si è verificato un errore durante l\'eliminazione:', error);
                             });
         }
-        /* function modifyElement(id, descrizione, costo, data){
-            console.log(id);
-            console.log(descrizione);
-            console.log(costo);
-            console.log(data);
-            modifyElementFromServer(id, descrizione, costo, data).then(() => {
-                location.reload();
-                                console.log('La richiesta di modifica è stata completata con successo.');
-                                // Esegui altre azioni qui se necessario
-                            })
-                                .catch(error => {
-                                    console.error('Si è verificato un errore durante l\'eliminazione:', error);
-                            }); 
-        } */
-        window.addEventListener('DOMContentLoaded', createPage);
 
+
+
+
+        if (window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
+            // La pagina è stata ricaricata
+            getSessionData();
+            console.log("La pagina è stata ricaricata");
+        } else if (window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD) {
+            // È avvenuto uno spostamento da una pagina precedente o successiva
+            getData();
+            console.log("Spostamento da una pagina precedente o successiva");
+        }else{
+            getData();
+            console.log("Navigazione normale");
+
+        }
     </script>
 </body>
 </html>
