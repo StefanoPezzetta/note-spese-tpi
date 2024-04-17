@@ -23,18 +23,41 @@
         <button type="submit">Aggiungi</button>
     </form>
     <button id="mostraForm">Aggiungi nota</button>
+
+    
     <form action="home.modify.script.php" method="POST" id="formModificaNota" class="hidden">
-    <label for="descrizione">Descrizione:</label>
+        <input type="text" id="idNotaModifica" name="idNotaModifica">
+        <label for="descrizione">Descrizione:</label>
         <input type="text" id="descrizioneModifica" name="descrizioneModifica"><br>
         <label for="costo">Costo:</label>
         <input type="number" id="costoModifica" name="costoModifica"><br>
         <label for="data">Data:</label>
         <input type="date" id="dataModifica" name="dataModifica"><br>
-        <button type="submit" onclick="modifyElement(idDaModificare,
+        <button type="submit">Modifica</button>  
+    </form>
+
+
+
+
+    <button onclick='filtraNote'>Filtra</button>
+    <form action="home.filter.script.php" method="POST" id="formModificaNota" class="hidden">
+        <input type="number" id="costoModifica" name="costoModifica"><br>
+        <label for="data">Data:</label> 
+    </form>
+
+
+<!-- 
+    onclick="modifyElement(document.getElementById('idNotaModifica').value,
         document.getElementById('descrizioneModifica').value,
         document.getElementById('costoModifica').value,
-        document.getElementById('dataModifica').value)">Modifica</button>  
-    </form>
+        document.getElementById('dataModifica').value)" -->
+
+
+
+
+
+
+
 
     <script>
         let idDaModificare = "";
@@ -127,8 +150,9 @@
                             console.log(`${nota.id}`);
                             console.log(`${nota.data}`);
                             console.log(`${nota.descrizione}`);
-                            console.log(`${nota.costo}`);
+                            console.log(`${nota.costo}`); 
                             document.getElementById('formModificaNota').classList.remove('hidden');
+                            document.getElementById('idNotaModifica').value = nota.id;
                             
                             // Inserisci i valori della nota nel form
                             idDaModificare = nota.id;
@@ -146,6 +170,36 @@
                 })
                 .catch(error => console.error('Si è verificato un errore:', error));
     }
+
+
+
+    async function filtraNote(){
+        const dataToSend = {
+                data: data,
+            };
+            console.log(dataToSend);
+
+            try {
+                const response = await fetch('home.modify.script.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Errore durante la richiesta al server. Codice di stato: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Errore nella fetch:', error.message);
+            }
+    }
+
+
+
+
+
         document.getElementById('mostraForm').addEventListener('click', function() {
             document.getElementById('aggiungiForm').classList.remove('hidden');
             var today = new Date().toISOString().split('T')[0];
@@ -173,7 +227,11 @@
                                     console.error('Si è verificato un errore durante l\'eliminazione:', error);
                             });
         }
-        function modifyElement(id, descrizione, costo, data){
+        /* function modifyElement(id, descrizione, costo, data){
+            console.log(id);
+            console.log(descrizione);
+            console.log(costo);
+            console.log(data);
             modifyElementFromServer(id, descrizione, costo, data).then(() => {
                 location.reload();
                                 console.log('La richiesta di modifica è stata completata con successo.');
@@ -181,8 +239,8 @@
                             })
                                 .catch(error => {
                                     console.error('Si è verificato un errore durante l\'eliminazione:', error);
-                            });
-        }
+                            }); 
+        } */
         window.addEventListener('DOMContentLoaded', createPage);
 
     </script>

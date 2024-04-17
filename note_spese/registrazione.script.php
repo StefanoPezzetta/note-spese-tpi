@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("config.php");
 $mydb = new mysqli(SERVER, UTENTE, PASSWORD, DATABASE);
 
@@ -31,7 +32,19 @@ if ($num_rows >= 1) {
         $stmt2->bind_param("ssss", $email, $hash, $nome, $cognome);
         $stmt2->execute();
         $stmt2->close(); 
+
+        $stmt3 = $mydb->prepare("SELECT id FORM utente WHERE email = ?");
+        $stmt3->bind_param("s", $email);
+        if ($stmt3->execute()) {
+            $stmt3->bind_result($id);
+            $_SESSION["user"] = $id;
+            }
+        $stmt3->close();
         header("Location: home.php");
 
-}       
+        }
+            
+
+
+   
 ?>
