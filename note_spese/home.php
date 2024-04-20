@@ -13,7 +13,7 @@
 <body>
     <div id="elementi"></div>
 
-    <form action="aggiungi.script.php" method="POST" id="aggiungiForm" class="hidden">
+    <!-- <form action="aggiungi.script.php" method="POST" id="aggiungiForm" class="hidden">
         <label for="descrizione">Descrizione:</label>
         <input type="text" id="descrizione" name="descrizione" required><br>
         <label for="costo">Costo:</label>
@@ -21,11 +21,12 @@
         <label for="data">Data:</label>
         <input type="date" id="data" name="data" required><br>
         <button type="submit">Aggiungi</button>
-    </form>
-    <button id="mostraForm">Aggiungi nota</button>
+    </form> -->
+<!--     <button id="mostraForm">Aggiungi nota</button>
+ -->    <a href="aggiungi.php">Aggiungi nota</a>
 
-    
-    <form action="home.modify.script.php" method="POST" id="formModificaNota" class="hidden">
+        <a href="modifica.php"></a>
+    <!-- <form action="home.modify.script.php" method="POST" id="formModificaNota" class="hidden">
         <input type="hidden" id="idNotaModifica" name="idNotaModifica">
         <label for="descrizione">Descrizione:</label>
         <input type="text" id="descrizioneModifica" name="descrizioneModifica"><br>
@@ -34,7 +35,7 @@
         <label for="data">Data:</label>
         <input type="date" id="dataModifica" name="dataModifica"><br>
         <button type="submit">Modifica</button>  
-    </form>
+    </form> -->
 
 
 
@@ -166,7 +167,7 @@
                             console.log(`${nota.costo}`);
                             deleteElement(nota.id);
                         })
-                        bottoneModify.addEventListener('click', function(){
+                        /* bottoneModify.addEventListener('click', function(){
                             console.log(`${nota.id}`);
                             console.log(`${nota.data}`);
                             console.log(`${nota.descrizione}`);
@@ -180,7 +181,7 @@
                             document.getElementById('costoModifica').value = nota.costo;
                             document.getElementById('dataModifica').value = nota.data;
 
-                        });
+                        }); */
 
                         // Aggiunta dell'elemento e del bottone al contenitore
                         elemento.appendChild(bottoneDelete);
@@ -250,7 +251,7 @@
 
 
 
-        document.getElementById('mostraForm').addEventListener('click', function() {
+        /* document.getElementById('mostraForm').addEventListener('click', function() {
             document.getElementById('aggiungiForm').classList.remove('hidden');
             var today = new Date().toISOString().split('T')[0];
             document.getElementById('data').value = today;
@@ -265,7 +266,7 @@
                 event.preventDefault(); // Impedisce l'invio del form se i campi obbligatori non sono stati compilati
                 alert("Si prega di compilare tutti i campi obbligatori.");
             }
-        });
+        }); */
 
 
 
