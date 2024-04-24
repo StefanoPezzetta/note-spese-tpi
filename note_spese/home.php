@@ -25,7 +25,7 @@
 <!--     <button id="mostraForm">Aggiungi nota</button>
  -->    <a href="aggiungi.php">Aggiungi nota</a>
 
-        <a href="modifica.php"></a>
+        <button onclick='modificaNota()'>Modifica nota</button>
     <!-- <form action="home.modify.script.php" method="POST" id="formModificaNota" class="hidden">
         <input type="hidden" id="idNotaModifica" name="idNotaModifica">
         <label for="descrizione">Descrizione:</label>
@@ -66,6 +66,7 @@
 
     <script>
         let idDaModificare = "";
+    
         async function deleteDataFromServer(id) {
             const dataToSend = {
                 id: id,
@@ -88,6 +89,14 @@
                 console.error('Errore nella fetch:', error.message);
             }
     }
+
+    function modificaNota() {
+    console.log(idDaModificare);
+
+    localStorage.setItem('idDaModificare', idDaModificare);
+
+    window.location.href = 'modifica.php';
+}
 
 
 
@@ -143,52 +152,57 @@
     }
 
 
-    function createPage(notes){
-        if(notes == 0){
-            console.log("cacca");
+    function createPage(notes) {
+    if (notes === 0) {
+        console.log("cacca");
+    } else {
+        const elementiDiv = document.getElementById('elementi');
+
+        for (let i = 0; i < notes.length; i++) {
+            const nota = notes[i];
+            const elemento = document.createElement('div');
+            elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Descrizione: ${nota.descrizione}, Costo: ${nota.costo}`;
+
+            // Creazione del checkbox associato all'elemento
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            
+            // Gestore di eventi per permettere la selezione esclusiva di un solo checkbox
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Deselect all other checkboxes
+                    idDaModificare = nota.id;
+                    const checkboxes = document.querySelectorAll('#elementi input[type="checkbox"]');
+                    checkboxes.forEach(box => {
+                        if (box !== this) {
+                            box.checked = false;
+                        }
+                    });
+                }
+            });
+
+            // Creazione del pulsante di eliminazione associato all'elemento
+            const bottoneDelete = document.createElement('button');
+            bottoneDelete.textContent = 'Elimina nota';
+            bottoneDelete.addEventListener('click', function() {
+                console.log(`${nota.id}`);
+                console.log(`${nota.data}`);
+                console.log(`${nota.descrizione}`);
+                console.log(`${nota.costo}`);
+                deleteElement(nota.id);
+            });
+
+            // Aggiunta del checkbox e del pulsante di eliminazione all'elemento
+            elemento.appendChild(checkbox);
+            elemento.appendChild(bottoneDelete);
+
+            // Aggiunta dell'elemento al contenitore
+            elementiDiv.appendChild(elemento);
         }
-        // Creazione degli elementi HTML basati sui dati ricevuti
-       else{ const elementiDiv = document.getElementById('elementi');
-                    for (let i = 0; i < notes.length; i++) {
-                        const nota = notes[i];
-                        const elemento = document.createElement('div');
-                        elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Descrizione: ${nota.descrizione}, Costo: ${nota.costo}`;
-
-                        // Creazione del bottone associato all'elemento
-                        const bottoneDelete = document.createElement('button');
-                        const bottoneModify = document.createElement('button');
-                        bottoneDelete.textContent = 'Elimina nota';
-                        bottoneModify.textContent = 'Modifica nota';
-                        // Aggiunta di un gestore di eventi per stampare l'ID dell'elemento quando il bottone viene cliccato
-                        bottoneDelete.addEventListener('click', function() {
-                            console.log(`${nota.id}`);
-                            console.log(`${nota.data}`);
-                            console.log(`${nota.descrizione}`);
-                            console.log(`${nota.costo}`);
-                            deleteElement(nota.id);
-                        })
-                        /* bottoneModify.addEventListener('click', function(){
-                            console.log(`${nota.id}`);
-                            console.log(`${nota.data}`);
-                            console.log(`${nota.descrizione}`);
-                            console.log(`${nota.costo}`); 
-                            document.getElementById('formModificaNota').classList.remove('hidden');
-                            document.getElementById('idNotaModifica').value = nota.id;
-                            
-                            // Inserisci i valori della nota nel form
-                            idDaModificare = nota.id;
-                            document.getElementById('descrizioneModifica').value = nota.descrizione;
-                            document.getElementById('costoModifica').value = nota.costo;
-                            document.getElementById('dataModifica').value = nota.data;
-
-                        }); */
-
-                        // Aggiunta dell'elemento e del bottone al contenitore
-                        elemento.appendChild(bottoneDelete);
-                        elemento.appendChild(bottoneModify);
-                        elementiDiv.appendChild(elemento);
-                    }}
     }
+}
+
+
 
 
 
