@@ -19,10 +19,10 @@
 </body>
 </html>
 <script>
-    let $idDaModificare = "";
-    let $dataDaModificare = "";
-    let $descrizioneDaModificare = "";
-    let $costoDaModificare = "";
+    let idDaModificare = "";
+    let dataDaModificare = "";
+    let descrizioneDaModificare = "";
+    let costoDaModificare = "";
 
     async function getNotaDaModificare(){
         idDaModificare = localStorage.getItem('idDaModificare');
@@ -47,19 +47,18 @@
                 }
                  const result = await response.json();
                  console.log(result);
-                 $dataDaModificare = result[0].data;
-                 $descrizioneDaModificare = result[0].descrizione;
-                 $costoDaModificare = result[0].costo;
-                 console.log($dataDaModificare);
-                 console.log($descrizioneDaModificare);
-                 console.log($costoDaModificare);
-                 console.log("aa");
-                 console.log($idDaModificare);
+                 dataDaModificare = result[0].data;
+                 descrizioneDaModificare = result[0].descrizione;
+                 costoDaModificare = result[0].costo;
+                 console.log(dataDaModificare);
+                 console.log(descrizioneDaModificare);
+                 console.log(costoDaModificare);
+                 console.log(idDaModificare);
 
-                 document.getElementById('idNotaModifica').value = $idDaModificare;
-                 document.getElementById('dataModifica').value = $dataDaModificare;
-                 document.getElementById('descrizioneModifica').value = $descrizioneDaModificare;
-                 document.getElementById('costoModifica').value = $costoDaModificare;
+                 document.getElementById('idNotaModifica').value = idDaModificare;
+                 document.getElementById('dataModifica').value = dataDaModificare;
+                 document.getElementById('descrizioneModifica').value = descrizioneDaModificare;
+                 document.getElementById('costoModifica').value = costoDaModificare;
 
 
                  if (result == 0) {
