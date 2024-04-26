@@ -15,5 +15,6 @@
         <input type="date" id="data" name="data" required><br>
         <button type="submit">Aggiungi</button>
     </form>
+    <a href="home.php">Indietro</a>
 </body>
 </html>

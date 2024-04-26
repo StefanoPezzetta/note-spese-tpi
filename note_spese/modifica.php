@@ -16,6 +16,7 @@
         <input type="date" id="dataModifica" name="dataModifica"><br>
         <button type="submit">Modifica</button>  
     </form>
+    <a href="home.php">Indietro</a>
 </body>
 </html>
 <script>

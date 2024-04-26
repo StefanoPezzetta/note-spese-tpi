@@ -97,6 +97,8 @@
 
 
     async function getData() {
+        const elementiDiv = document.getElementById('elementi');
+
     // Esegui una richiesta GET alla pagina PHP desiderata
             fetch('home.script.php')
                 .then(response => response.json()) // Assicurati che la risposta sia in formato JSON
@@ -116,15 +118,16 @@
 
                     createPage(notes);
                 })
-                .catch(error => console.error('Si è verificato un errore:', error));
+                .catch(elementiDiv.innerHTML = "non sono presenti note spese");
     }
 
 
     function createPage(notes) {
     if (notes === 0) {
-        console.log("cacca");
+        console.log("errore");
     } else {
         const elementiDiv = document.getElementById('elementi');
+        elementiDiv.innerHTML = "";
 
         for (let i = 0; i < notes.length; i++) {
             const nota = notes[i];
@@ -230,9 +233,9 @@
 
 
 
-        function deleteElement(id){
+        function    deleteElement(id){
             deleteDataFromServer(id).then(() => {
-                location.reload();
+                getData();
                                 console.log('La richiesta di eliminazione è stata completata con successo.');
                                 // Esegui altre azioni qui se necessario
                             })
