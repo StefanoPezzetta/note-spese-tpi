@@ -7,16 +7,17 @@ if ($mydb->connect_errno) {
     exit();
 }
 $user = $_SESSION["user"];
-$stmt = $mydb->prepare("SELECT id, data, descrizione, costo FROM nota WHERE fkUtente = ?");
+$stmt = $mydb->prepare("SELECT nota.id, nota.data, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ?");
 $stmt->bind_param("i", $user);
 if ($stmt->execute()) {
-    $stmt->bind_result($id, $data, $descrizione, $costo);
+    $stmt->bind_result($id, $data, $descrizione, $sottocategoria, $costo);
 
     while ($stmt->fetch()) {
         $result[] = [
             "id" => $id,
             "data" => $data,
             "descrizione" => $descrizione,
+            "sottocategoria" => $sottocategoria,
             "costo" => $costo,
         ];
     }

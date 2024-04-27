@@ -132,7 +132,7 @@
         for (let i = 0; i < notes.length; i++) {
             const nota = notes[i];
             const elemento = document.createElement('div');
-            elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Descrizione: ${nota.descrizione}, Costo: ${nota.costo}`;
+            elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Descrizione: ${nota.descrizione}, Sottocategoria: ${nota.sottocategoria}, Costo: ${nota.costo}`;
 
             // Creazione del checkbox associato all'elemento
             const checkbox = document.createElement('input');
