@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="text" id="pw" name="pw" required>
+                <input type="password" id="pw" name="pw" required>
             </div>
             <div id = "errore"></div>
             <div class="form-group">
