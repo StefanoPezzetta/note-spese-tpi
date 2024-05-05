@@ -7,10 +7,10 @@ if ($mydb->connect_errno) {
     exit();
 }
 $user = $_SESSION["user"];
-$stmt = $mydb->prepare("SELECT nota.id, nota.data, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ?");
+$stmt = $mydb->prepare("SELECT nota.id, nota.data, descrizione.descrizione, descrizione.sottocategoria, nota.costo , nota.motivazione FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ?");
 $stmt->bind_param("i", $user);
 if ($stmt->execute()) {
-    $stmt->bind_result($id, $data, $descrizione, $sottocategoria, $costo);
+    $stmt->bind_result($id, $data, $descrizione, $sottocategoria, $costo, $motivazione);
 
     while ($stmt->fetch()) {
         $result[] = [
@@ -19,6 +19,7 @@ if ($stmt->execute()) {
             "descrizione" => $descrizione,
             "sottocategoria" => $sottocategoria,
             "costo" => $costo,
+            "motivazione" => $motivazione,
         ];
     }
     $_SESSION['notes'] = $result;

@@ -12,15 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($data !== null) {
         $id = $data["id"];
-        $stmt = $mydb->prepare("SELECT data, descrizione, costo FROM nota WHERE id = ?");
+        $stmt = $mydb->prepare("SELECT nota.data, nota.motivazione, nota.fkDescrizione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione on nota.fkDescrizione = descrizione.id WHERE nota.id = ?");
         $stmt->bind_param("i", $id); 
         if ($stmt->execute()) {
-            $stmt->bind_result($data, $descrizione, $costo);
+            $stmt->bind_result($data, $motivazione, $fkDescrizione, $descrizione, $sottocategoria, $costo);
         
             while ($stmt->fetch()) {
                 $result[] = [
                     "data" => $data,
+                    "motivazione" => $motivazione,
+                    "fkDescrizione" => $fkDescrizione,
                     "descrizione" => $descrizione,
+                    "sottocategoria" => $sottocategoria,
                     "costo" => $costo,
                 ];
             }

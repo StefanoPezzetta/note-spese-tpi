@@ -26,7 +26,25 @@
         <input type="date" id="dataInizio" name="dataInizio"><br>
         <label for="data">Data fine:</label>
         <input type="date" id="dataFine" name="dataFine"><br>
-        <button onclick="filtraData(document.getElementById('dataInizio').value, document.getElementById('dataFine').value)">Filtra</button>
+        <label for="motivazione">Motivazione:</label>
+        <select id="motivazione" name="motivazione" required>
+            <option value="" disabled selected>Seleziona una motivazione</option>
+            <option value="manutenzione">Manutenzione</option>
+            <option value="convention">Convention</option>
+            <option value="conferenza">Conferenza</option>
+            <option value="trasporto">Trasporto</option>
+            <option value="installazione">Installazione</option>
+            <option value="sopralluogo">Sopralluogo</option>
+            <option value="altro">Altro</option>
+        </select><br>
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" name="categoria" required>
+            <option value="" disabled selected>Seleziona una categoria</option>
+            <option value="trasporto">Trasporto</option>
+            <option value="alloggio">Alloggio</option>
+            <option value="pasto">Pasto</option>
+        </select><br>        
+        <button onclick="filtraData(document.getElementById('dataInizio').value, document.getElementById('dataFine').value, document.getElementById('motivazione').value, document.getElementById('categoria').value)">Filtra</button>
     </div>
         
 
@@ -132,7 +150,7 @@
         for (let i = 0; i < notes.length; i++) {
             const nota = notes[i];
             const elemento = document.createElement('div');
-            elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Descrizione: ${nota.descrizione}, Sottocategoria: ${nota.sottocategoria}, Costo: ${nota.costo}`;
+            elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Motivazione: ${nota.motivazione},  Descrizione: ${nota.descrizione}, Sottocategoria: ${nota.sottocategoria}, Costo: ${nota.costo}`;
 
             // Creazione del checkbox associato all'elemento
             const checkbox = document.createElement('input');
@@ -196,10 +214,12 @@
 
 
 
-    async function filtraData(dataInizio, dataFine) {
+    async function filtraData(dataInizio, dataFine, motivazione, categoria) {
             const dataToSend = {
                 dataInizio: dataInizio,
                 dataFine:dataFine,
+                motivazione:motivazione,
+                categoria: categoria,
             };
             console.log(dataToSend);
 
@@ -233,7 +253,7 @@
 
 
 
-        function    deleteElement(id){
+        function  deleteElement(id){
             deleteDataFromServer(id).then(() => {
                 getData();
                                 console.log('La richiesta di eliminazione è stata completata con successo.');
