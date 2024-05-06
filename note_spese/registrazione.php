@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
+    <title>Login</title>
     <link rel="stylesheet" href="registrazione.css">
 </head>
 <body>
-    <br><br><br>
-    <h1 class="title">Benvenuto su <span class="highlight">Spes</span>Hub</h1>
+<br><br><br>
+
+<h1 class="title"><span class="bentornato">Bentornato su </span><span class="highlight">Spes</span>Hub</h1>
     <hr class="separatore">
-
     <div class="container">
-    <a href="index.php" class="back-link">&#8592;</a>
+    <h2>Registrazione</h2>
+    <br><br>    
 
+    <a href="index.php" class="back-link">&#8592;</a>
     <a href="index.php">
-    <img src="images/logo.png" alt="logo" class="logo" style="max-width: 30%; height: 30%;">
+    <img src="images/logo.png" alt="logo" class="logo" style="max-width: 40%; height: 40%;">
 </a>
 
-
-
-        <h2>Registrazione</h2>
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-                <br>
-                <label for="cognome">Cognome:</label>
-                <input type="text" id="cognome" name="cognome" required>
-                <br>
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required>
-                <br>
-                <label for="pw">Password:</label>
-                <input type="password" id="pw" name="pw" required>
-            </div>
+<div class="form-group">
+                <input type="text" id="nome" placeholder="Nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="cognome" placeholder="Cognome" name="cognome" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" placeholder="Email"name="email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" id="pw" name="pw" required>
+                </div>
             <div id = "errore" ></div>
             <div class="form-group">
+            <a href="index.php" class="button">Indietro</a>
                 <button onclick = registrati()>Registrati</button>
             </div>
+        <div class="register-link">
             <p>Sei già un utente? <a href="login.php">Accedi</a></p>
-
+        </div>
     </div>
 </body>
 </html>

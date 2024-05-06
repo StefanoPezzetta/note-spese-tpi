@@ -1,0 +1,83 @@
+.hidden {
+    display: none;
+}
+.highlight {
+    color: #087AE3;
+    font-weight: bold;
+    text-shadow:
+    2px 3px 9px rgb(255, 255, 255),
+    0 0 2em #ffffff,
+    0 0 0.2em #ffffff;
+  }
+/* Reset di margin e padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Barra verticale */
+.vertical-bar {
+    position: fixed; /* Fissa la barra sul lato sinistro della pagina */
+    top: 0; /* Allinea la barra con la parte superiore della pagina */
+    left: 0; /* Posiziona la barra a sinistra */
+    width: 22%; /* Larghezza della barra */
+    height: 100%; /* Altezza della barra (fino alla fine della pagina) */
+    background-color: #087AE3; /* Colore di sfondo blu */
+}
+.content{
+    margin-left: 25%;
+}
+h2{
+    color: #087AE3;
+    position: relative;
+    top:70px;
+}
+h3{
+    color: #087AE3;
+    position: relative;
+    top: 60px;
+}
+.aggiungi {
+    background-color: #087AE3; /* Colore di sfondo blu */
+    color: #fff; /* Colore del testo bianco */
+    padding: 10px 20px; /* Padding interno */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 15px; /* Arrotonda gli angoli */
+    cursor: pointer; /* Cambia il cursore a mano */
+    font-size: 16px; /* Dimensione del testo */
+    margin-right: 20px; /* Spazio a destra */
+    transition: background-color 0.3s; /* Transizione per il colore di sfondo */
+    text-decoration: none;
+    position: fixed;
+    right: 25px;
+    
+}
+
+/* Effetto hover per il pulsante */
+.aggiungi:hover {
+    background-color: #2980b9; /* Colore di sfondo più scuro quando si passa il mouse */
+}
+
+/* Contenuto principale */
+.content {
+    flex-grow: 1; /* Permette al contenuto di espandersi per riempire lo spazio disponibile */
+    padding: 20px; /* Aggiunge un po' di spazio intorno al contenuto */
+}
+.modifica{
+    border: none; /* Rimuove il bordo predefinito */
+    cursor: pointer; /* Cambia il cursore a mano */
+    margin-right: 20px; /* Spazio a destra */
+    text-decoration: none;
+    position: fixed;
+    right: 25px;
+    background-color: #fff;
+    width: 12px;  /* Larghezza ridotta */
+    height: 12px; /* Altezza ridotta */
+    
+}
+h4 span{
+    margin-left: 110px;
+    margin-right: 800px;
+}

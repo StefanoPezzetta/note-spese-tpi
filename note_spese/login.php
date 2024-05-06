@@ -9,10 +9,11 @@
 <body>
 <br><br><br>
 
-<h1 class="title">Bentornato su <span class="highlight">Spes</span>Hub</h1>
+<h1 class="title"><span class="bentornato">Bentornato su </span><span class="highlight">Spes</span>Hub</h1>
     <hr class="separatore">
     <div class="container">
     <h2>Accedi</h2>
+    <br><br>    
 
     <a href="index.php" class="back-link">&#8592;</a>
     <a href="index.php">
@@ -21,15 +22,14 @@
 
 
             <div class="form-group">
-                <label for="username">Email:</label>
-                <input type="text" id="email" name="email" required>
+                <input type="text" id="email" placeholder="Email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="pw" name="pw" required>
+                <input type="text" id="pw" placeholder="Password" name="pw" required>
             </div>
             <div id = "errore"></div>
             <div class="form-group">
+            <a href="index.php" class="button">Indietro</a>
                 <button onclick="login()">Login</button>
             </div>
         <div class="register-link">

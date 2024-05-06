@@ -4,49 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="home.css">
+
+
 </head>
 <body>
+    <div class="vertical-bar"></div>
+    <div class="content">
+    <h1 class="title"><span class="highlight">Spes</span>Hub</h1>
+    <hr class="separatore">
+    <a class="aggiungi" href="aggiungi.php">+ Nuovo</a>
+    <h2>Note spese:</h2>
+    <h3>Tutte</h3>
+    <br>
+    <button class="modifica" onclick='modificaNota()'><img src="images/modifica.png"/></button>
+    <br>
+
+    <hr class="separatore">
+    <h4>Descrizione <span> Data</span>costo</h4>
+
     <div id="elementi"></div>
 
-    <a href="aggiungi.php">Aggiungi nota</a>
-
-        <button onclick='modificaNota()'>Modifica nota</button>
 
 
 
 
-    <button onclick='filtraForm()'>Filtra</button>
-    <div id = "formFiltraNota" class="hidden">
-        <label for="data">Data inizio:</label> 
-        <input type="date" id="dataInizio" name="dataInizio"><br>
-        <label for="data">Data fine:</label>
-        <input type="date" id="dataFine" name="dataFine"><br>
-        <label for="motivazione">Motivazione:</label>
-        <select id="motivazione" name="motivazione" required>
-            <option value="" disabled selected>Seleziona una motivazione</option>
-            <option value="manutenzione">Manutenzione</option>
-            <option value="convention">Convention</option>
-            <option value="conferenza">Conferenza</option>
-            <option value="trasporto">Trasporto</option>
-            <option value="installazione">Installazione</option>
-            <option value="sopralluogo">Sopralluogo</option>
-            <option value="altro">Altro</option>
-        </select><br>
-        <label for="categoria">Categoria:</label>
-        <select id="categoria" name="categoria" required>
-            <option value="" disabled selected>Seleziona una categoria</option>
-            <option value="trasporto">Trasporto</option>
-            <option value="alloggio">Alloggio</option>
-            <option value="pasto">Pasto</option>
-        </select><br>        
-        <button onclick="filtraData(document.getElementById('dataInizio').value, document.getElementById('dataFine').value, document.getElementById('motivazione').value, document.getElementById('categoria').value)">Filtra</button>
+
+        <button onclick='filtraForm()'>Filtra</button>
+        <div id = "formFiltraNota" class="hidden">
+            <label for="data">Data inizio:</label> 
+            <input type="date" id="dataInizio" name="dataInizio"><br>
+            <label for="data">Data fine:</label>
+            <input type="date" id="dataFine" name="dataFine"><br>
+            <label for="motivazione">Motivazione:</label>
+            <select id="motivazione" name="motivazione" required>
+                <option value="" disabled selected>Seleziona una motivazione</option>
+                <option value="manutenzione">Manutenzione</option>
+                <option value="convention">Convention</option>
+                <option value="conferenza">Conferenza</option>
+                <option value="trasporto">Trasporto</option>
+                <option value="installazione">Installazione</option>
+                <option value="sopralluogo">Sopralluogo</option>
+                <option value="altro">Altro</option>
+            </select><br>
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="" disabled selected>Seleziona una categoria</option>
+                <option value="trasporto">Trasporto</option>
+                <option value="alloggio">Alloggio</option>
+                <option value="pasto">Pasto</option>
+            </select><br>        
+            <button onclick="filtraData(document.getElementById('dataInizio').value, document.getElementById('dataFine').value, document.getElementById('motivazione').value, document.getElementById('categoria').value)">Filtra</button>
+        </div>
     </div>
-        
 
 
 
@@ -81,37 +91,8 @@
 
     localStorage.setItem('idDaModificare', idDaModificare);
 
-    window.location.href = 'modifica.php';
-}
-
-
-
-    async function modifyElementFromServer(id, descrizione, costo, data) {
-            const dataToSend = {
-                id: id,
-                descrizione: descrizione,
-                costo: costo,
-                data: data,
-            };
-            console.log(dataToSend);
-
-            try {
-                const response = await fetch('home.modify.script.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dataToSend),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Errore durante la richiesta al server. Codice di stato: ${response.status}`);
-                }
-            } catch (error) {
-                console.error('Errore nella fetch:', error.message);
-            }
-    }
-
+/*     window.location.href = 'modifica.php';
+ */}
 
 
     async function getData() {
@@ -148,46 +129,82 @@
         elementiDiv.innerHTML = "";
 
         for (let i = 0; i < notes.length; i++) {
-            const nota = notes[i];
-            const elemento = document.createElement('div');
-            elemento.textContent = `ID Utente: ${nota.id}, Data: ${nota.data}, Motivazione: ${nota.motivazione},  Descrizione: ${nota.descrizione}, Sottocategoria: ${nota.sottocategoria}, Costo: ${nota.costo}`;
-
-            // Creazione del checkbox associato all'elemento
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            
-            // Gestore di eventi per permettere la selezione esclusiva di un solo checkbox
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    // Deselect all other checkboxes
-                    idDaModificare = nota.id;
-                    const checkboxes = document.querySelectorAll('#elementi input[type="checkbox"]');
-                    checkboxes.forEach(box => {
-                        if (box !== this) {
-                            box.checked = false;
-                        }
-                    });
+    const nota = notes[i];
+    
+    // Creazione dell'elemento principale della nota
+    const elemento = document.createElement('div');
+    elemento.classList.add('nota-element');
+    
+    // Creazione dell'ID utente con una classe CSS
+    const idUtente = document.createElement('span');
+    idUtente.classList.add('nota-id');
+    idUtente.textContent = `ID Utente: ${nota.id}`;
+    
+    // Creazione della data con una classe CSS
+    const dataNota = document.createElement('span');
+    dataNota.classList.add('nota-data');
+    dataNota.textContent = `Data: ${nota.data}`;
+    
+    // Creazione della motivazione con una classe CSS
+    const motivazioneNota = document.createElement('span');
+    motivazioneNota.classList.add('nota-motivazione');
+    motivazioneNota.textContent = `Motivazione: ${nota.motivazione}`;
+    
+    // Creazione della descrizione con una classe CSS
+    const descrizioneNota = document.createElement('span');
+    descrizioneNota.classList.add('nota-descrizione');
+    descrizioneNota.textContent = `Descrizione: ${nota.descrizione}`;
+    
+    // Creazione della sottocategoria con una classe CSS
+    const sottocategoriaNota = document.createElement('span');
+    sottocategoriaNota.classList.add('nota-sottocategoria');
+    sottocategoriaNota.textContent = `Sottocategoria: ${nota.sottocategoria}`;
+    
+    // Creazione del costo con una classe CSS
+    const costoNota = document.createElement('span');
+    costoNota.classList.add('nota-costo');
+    costoNota.textContent = `Costo: ${nota.costo}`;
+    
+    // Creazione del checkbox associato all'elemento
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('nota-checkbox');
+    
+    // Gestore di eventi per la selezione esclusiva di un solo checkbox
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            idDaModificare = nota.id;
+            const checkboxes = document.querySelectorAll('#elementi input[type="checkbox"]');
+            checkboxes.forEach(box => {
+                if (box !== this) {
+                    box.checked = false;
                 }
             });
-
-            // Creazione del pulsante di eliminazione associato all'elemento
-            const bottoneDelete = document.createElement('button');
-            bottoneDelete.textContent = 'Elimina nota';
-            bottoneDelete.addEventListener('click', function() {
-                console.log(`${nota.id}`);
-                console.log(`${nota.data}`);
-                console.log(`${nota.descrizione}`);
-                console.log(`${nota.costo}`);
-                deleteElement(nota.id);
-            });
-
-            // Aggiunta del checkbox e del pulsante di eliminazione all'elemento
-            elemento.appendChild(checkbox);
-            elemento.appendChild(bottoneDelete);
-
-            // Aggiunta dell'elemento al contenitore
-            elementiDiv.appendChild(elemento);
         }
+    });
+
+    // Creazione del pulsante di eliminazione associato all'elemento
+    const bottoneDelete = document.createElement('button');
+    bottoneDelete.textContent = 'Elimina nota';
+    bottoneDelete.classList.add('nota-elimina');
+    bottoneDelete.addEventListener('click', function() {
+        deleteElement(nota.id);
+    });
+
+    // Aggiunta delle parti create all'elemento principale
+    elemento.appendChild(idUtente);
+    elemento.appendChild(dataNota);
+    elemento.appendChild(motivazioneNota);
+    elemento.appendChild(descrizioneNota);
+    elemento.appendChild(sottocategoriaNota);
+    elemento.appendChild(costoNota);
+    elemento.appendChild(checkbox);
+    elemento.appendChild(bottoneDelete);
+    
+    // Aggiunta dell'elemento al contenitore
+    elementiDiv.appendChild(elemento);
+}
+
     }
 }
 
