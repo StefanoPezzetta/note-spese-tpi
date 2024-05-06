@@ -77,7 +77,37 @@ h3{
     height: 12px; /* Altezza ridotta */
     
 }
-h4 span{
-    margin-left: 110px;
-    margin-right: 800px;
+.distanziate {
+    display: flex;
+    justify-content: flex-start; /* Allinea gli elementi a sinistra */
+}
+
+.distanziate span {
+    margin-right: 140px; /* Aggiungi uno spazio a destra di ciascun elemento <span> */
+}
+
+.distanziate span:last-child {
+    margin-right: 0; /* Rimuove lo spazio dall'ultimo elemento */
+    margin-left: 350px;
+}
+/* Per distanziare gli elementi dentro il contenitore */
+
+
+.nota-element {
+    display: flex; /* Imposta il display come flex */
+    justify-content: flex-start; /* Allinea gli elementi a sinistra */
+}
+
+/* Aggiungi margine destro di 20px solo tra i `span` consecutivi */
+.nota-element span + span {
+    margin-left: 135px;
+}
+
+/* Rimuovi il margine sinistro specifico tra "descrizione" e "sottocategoria" */
+.nota-element span.nota-descrizione + span.nota-sottocategoria {
+    margin-left: 0;
+}
+.nota-element span.nota-costo {
+    margin-left: 455px; 
+    margin-right: 20px;
 }

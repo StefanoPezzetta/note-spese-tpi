@@ -21,8 +21,12 @@
     <br>
 
     <hr class="separatore">
-    <h4>Descrizione <span> Data</span>costo</h4>
-
+    <h4 class="distanziate">
+        <span>Motivazione</span>
+        <span>Descrizione</span>
+        <span>Data</span>
+        <span>Costo</span>
+    </h4>
     <div id="elementi"></div>
 
 
@@ -91,8 +95,8 @@
 
     localStorage.setItem('idDaModificare', idDaModificare);
 
-/*     window.location.href = 'modifica.php';
- */}
+     window.location.href = 'modifica.php';
+ }
 
 
     async function getData() {
@@ -138,32 +142,36 @@
     // Creazione dell'ID utente con una classe CSS
     const idUtente = document.createElement('span');
     idUtente.classList.add('nota-id');
-    idUtente.textContent = `ID Utente: ${nota.id}`;
+    idUtente.textContent = `ID Nota: ${nota.id}`;
+    idUtente.hidden = true;  // Nasconde l'elemento
+
+
+    // Creazione della motivazione con una classe CSS
+    const motivazioneNota = document.createElement('span');
+    motivazioneNota.classList.add('nota-motivazione');
+    motivazioneNota.textContent = `${nota.motivazione}`;
+    
     
     // Creazione della data con una classe CSS
     const dataNota = document.createElement('span');
     dataNota.classList.add('nota-data');
-    dataNota.textContent = `Data: ${nota.data}`;
+    dataNota.textContent = `${nota.data}`;
     
-    // Creazione della motivazione con una classe CSS
-    const motivazioneNota = document.createElement('span');
-    motivazioneNota.classList.add('nota-motivazione');
-    motivazioneNota.textContent = `Motivazione: ${nota.motivazione}`;
     
     // Creazione della descrizione con una classe CSS
     const descrizioneNota = document.createElement('span');
     descrizioneNota.classList.add('nota-descrizione');
-    descrizioneNota.textContent = `Descrizione: ${nota.descrizione}`;
+    descrizioneNota.textContent = `${nota.descrizione}-`;
     
     // Creazione della sottocategoria con una classe CSS
     const sottocategoriaNota = document.createElement('span');
     sottocategoriaNota.classList.add('nota-sottocategoria');
-    sottocategoriaNota.textContent = `Sottocategoria: ${nota.sottocategoria}`;
+    sottocategoriaNota.textContent = `${nota.sottocategoria}`;
     
     // Creazione del costo con una classe CSS
     const costoNota = document.createElement('span');
     costoNota.classList.add('nota-costo');
-    costoNota.textContent = `Costo: ${nota.costo}`;
+    costoNota.textContent = `${nota.costo}`;
     
     // Creazione del checkbox associato all'elemento
     const checkbox = document.createElement('input');
@@ -193,12 +201,12 @@
 
     // Aggiunta delle parti create all'elemento principale
     elemento.appendChild(idUtente);
-    elemento.appendChild(dataNota);
+    elemento.appendChild(checkbox);
     elemento.appendChild(motivazioneNota);
     elemento.appendChild(descrizioneNota);
     elemento.appendChild(sottocategoriaNota);
+    elemento.appendChild(dataNota);
     elemento.appendChild(costoNota);
-    elemento.appendChild(checkbox);
     elemento.appendChild(bottoneDelete);
     
     // Aggiunta dell'elemento al contenitore

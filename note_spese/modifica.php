@@ -22,9 +22,9 @@
         </select><br>
         <label for="categoria">Categoria:</label>
         <select id="categoriaModifica" name="categoriaModifica" required>
-            <option value="Trasporto">Trasporto</option>
-            <option value="Alloggio">Alloggio</option>
-            <option value="Pasto">Pasto</option>
+            <option value="trasporto">Trasporto</option>
+            <option value="alloggio">Alloggio</option>
+            <option value="pasto">Pasto</option>
         </select><br>
         <label for="descrizione">Descrizione:</label>
         <select id="descrizioneModifica" name="descrizioneModifica" required>
@@ -39,7 +39,155 @@
 </body>
 </html>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    async function getNotaDaModificare(){
+        idDaModificare = localStorage.getItem('idDaModificare');
+        console.log(idDaModificare);
+
+        const dataToSend = {
+                id: idDaModificare,
+            };
+            console.log(dataToSend);
+
+            try {
+                const response = await fetch('getNotaDaModificare.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Errore durante la richiesta al server. Codice di stato: ${response.status}`);
+                }
+                 const result = await response.json();
+                 console.log(result);
+                 fkDescrizioneDaModificare = result[0].fkDescrizione;
+                 dataDaModificare = result[0].data;
+                 motivazioneDaModificare = result[0].motivazione;
+                 descrizioneDaModificare = result[0].descrizione;
+                 sottocategoriaDaModificare = result[0].sottocategoria;
+                 costoDaModificare = result[0].costo;
+                 console.log(fkDescrizioneDaModificare);
+                 console.log(dataDaModificare);
+                 console.log(motivazioneDaModificare);
+                 console.log(descrizioneDaModificare);
+                 console.log(sottocategoriaDaModificare);
+                 console.log(costoDaModificare);
+                 console.log(idDaModificare);
+                
+                 document.getElementById('fkDescrizioneModifica').value = fkDescrizioneDaModificare;
+                 document.getElementById('idNotaModifica').value = idDaModificare;
+                 document.getElementById('dataModifica').value = dataDaModificare;
+                 document.getElementById('motivazioneModifica').value = motivazioneDaModificare;
+                 document.getElementById('categoriaModifica').value = descrizioneDaModificare;
+                 document.getElementById('costoModifica').value = costoDaModificare;
+                 sottocategoria()
+                 document.getElementById('descrizioneModifica').value = sottocategoriaDaModificare;
+                 
+
+
+                 if (result == 0) {
+                    console.log("Il server ha restituito 0.");
+                }
+                
+ 
+            } catch (error) {
+                console.error('Errore nella fetch:', error.message);
+            }
+
+    }
+    function sottocategoria(){
+    const category = document.getElementById('categoriaModifica');
+    const description = document.getElementById('descrizioneModifica');
+    let selectedCategory = category.value;
+        
+    let optionsSottocategorie = [];
+    if (selectedCategory === 'trasporto') {
+            optionsSottocategorie = ['treno', 'metro', 'pullman', 'monopattino', 'taxi', 'noleggio', 'benzina', 'aereo', 'nave', 'traghetto', 'bicicletta'];
+        } else if (selectedCategory === 'alloggio') {
+            optionsSottocategorie = ['albergo', 'appartamento'];
+        } else if (selectedCategory === 'pasto') {
+            optionsSottocategorie = ['colazione', 'pranzo', 'cena'];
+        }
+        optionsSottocategorie.forEach(function(option) {
+            const opt = document.createElement('option');
+            opt.value = option.toLowerCase();
+            opt.textContent = option;
+            description.appendChild(opt);
+        });
+}
+function updateOptions() {
+        descriptionSelect.innerHTML = '';
+        
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        defaultOption.textContent = '';
+        descriptionSelect.appendChild(defaultOption);
+        
+        let selectedCategory = categorySelect.value;
+        
+        let options = [];
+        
+        let categoryLabel = '';
+        
+        if (selectedCategory === 'trasporto') {
+            defaultOption.textContent = 'trasporto';
+            options = ['treno', 'metro', 'pullman', 'monopattino', 'taxi', 'noleggio', 'benzina', 'aereo', 'nave', 'traghetto', 'bicicletta'];
+        } else if (selectedCategory === 'alloggio') {
+            defaultOption.textContent = 'alloggio';
+            options = ['albergo', 'appartamento'];
+        } else if (selectedCategory === 'pasto') {
+            defaultOption.textContent = 'pasto';
+            options = ['colazione', 'pranzo', 'cena'];
+        }
+        
+    
+        
+        options.forEach(function(option) {
+            const opt = document.createElement('option');
+            opt.value = option.toLowerCase();
+            opt.textContent = option;
+            descriptionSelect.appendChild(opt);
+            });
+            
+            descriptionSelect.focus();
+            setTimeout(function() {
+                setSelect(descriptionSelect, defaultOption);
+            }, 100);
+    }
+    function setSelect(descriptionSelect, defaultOption) {
+        if(defaultOption.textContent == "Trasporto"){
+            console.log("trasporto");
+            descriptionSelect.size = 1; 
+            descriptionSelect.size = 5; 
+        }else if(defaultOption.textContent == "Alloggio"){
+            console.log("alloggio");
+            descriptionSelect.size = 1; 
+            descriptionSelect.size = 3; 
+        }else{
+            console.log("pasto");
+            descriptionSelect.size = 1;
+            descriptionSelect.size = 4; 
+        }
+
+}
+    getNotaDaModificare(); 
+
+    const categorySelect = document.getElementById('categoriaModifica');
+    const descriptionSelect = document.getElementById('descrizioneModifica');
+    categorySelect.addEventListener('change', updateOptions);
+    descriptionSelect.addEventListener('change', function() {
+        console.log('Option selected in descriptionSelect');
+        console.log(descriptionSelect.value);
+
+        descriptionSelect.size = 1;
+    });
+
+
+   /*  document.addEventListener('DOMContentLoaded', function() {
         const categorySelect = document.getElementById('categoriaModifica');
         const descriptionSelect = document.getElementById('descrizioneModifica');
     
@@ -196,16 +344,13 @@ function setSelect(descriptionSelect, defaultOption) {
                  document.getElementById('dataModifica').value = dataDaModificare;
                  document.getElementById('motivazioneModifica').value = motivazioneDaModificare;
                  document.getElementById('categoriaModifica').value = descrizioneDaModificare;
-/*                  document.getElementById('descrizioneModifica').value = sottocategoriaDaModificare;
- */              document.getElementById('costoModifica').value = costoDaModificare;
+               document.getElementById('costoModifica').value = costoDaModificare;
                  sottocategoria().then(() => {
-                    // Esegui il codice commentato una volta che la promessa è stata risolta
                     document.getElementById('descrizioneModifica').value = sottocategoriaDaModificare;
                 })
 
 
                  if (result == 0) {
-                    // Gestisci il caso in cui il server restituisce 0
                     console.log("Il server ha restituito 0.");
                 }
                 
@@ -215,5 +360,5 @@ function setSelect(descriptionSelect, defaultOption) {
             }
 
     }
-    getNotaDaModificare();
+    getNotaDaModificare(); */
 </script>
