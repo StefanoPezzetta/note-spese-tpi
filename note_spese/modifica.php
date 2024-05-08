@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="modifica.css">
+
 </head>
 <body>
-<form action="home.modify.script.php" method="POST" id="formModificaNota" class="hidden">
+<div class="vertical-bar"></div>
+<div class="content">
+<h1 class="title"><span class="highlight">Spes</span>Hub</h1>
+<hr class="separatore">
+<div class="container">
+
+<h2>Modifica nota</h2>
+<img class="image" src="images/cartapenna.png">
+
+<form action="home.modify.script.php" method="POST" id="formModificaNota" class="form-container">
+<div class="contenutoForm">
+
         <input type="hidden" id="idNotaModifica" name="idNotaModifica">
         <input type="hidden" id="fkDescrizioneModifica" name="fkDescrizioneModifica">
 
-        <label for="motivazione">Motivazione:</label>
         <select id="motivazioneModifica" name="motivazioneModifica" required>
             <option value="manutenzione">Manutenzione</option>
             <option value="convention">Convention</option>
@@ -20,22 +32,21 @@
             <option value="sopralluogo">Sopralluogo</option>
             <option value="altro">Altro</option>
         </select><br>
-        <label for="categoria">Categoria:</label>
         <select id="categoriaModifica" name="categoriaModifica" required>
             <option value="trasporto">Trasporto</option>
             <option value="alloggio">Alloggio</option>
             <option value="pasto">Pasto</option>
         </select><br>
-        <label for="descrizione">Descrizione:</label>
         <select id="descrizioneModifica" name="descrizioneModifica" required>
         </select><br>
-        <label for="costo">Costo:</label>
-        <input type="number" id="costoModifica" name="costoModifica"><br>
-        <label for="data">Data:</label>
+        <input type="number" id="costoModifica" name="costoModifica" placeholder=Costo><br>
         <input type="date" id="dataModifica" name="dataModifica"><br>
-        <button type="submit">Modifica</button>  
+        </div>
+        <button class="modifica" type="submit">Salva</button>  
     </form>
-    <a href="home.php">Indietro</a>
+    <a class="indietro" href="home.php">Indietro</a>
+    </div>
+</div>
 </body>
 </html>
 <script>

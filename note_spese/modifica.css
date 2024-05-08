@@ -63,7 +63,7 @@ h2{
 
 .contenutoForm{
     left: 40px;
-    top: 155px;
+    top: 140px;
     position: fixed;
 
 }
@@ -73,7 +73,6 @@ h2{
 }
 
 .contenutoForm select{
-    margin-bottom: 25px;
     width: 540px; /* Imposta la larghezza degli elementi al 100% del contenitore */
     padding: 12px; /* Aumenta il padding per rendere gli elementi più grandi */
     background-color: #e0e0e0; /* Imposta uno sfondo grigio chiaro */
@@ -98,7 +97,7 @@ h2{
     right: 80px;
     bottom: 230px;
 }
-.crea{
+.modifica{
     position: fixed;
     bottom: 56px;
     background-color: #087AE3; /* Colore blu */
@@ -110,7 +109,7 @@ h2{
     cursor: pointer; /* Mostra il cursore a forma di mano al passaggio del mouse */
     transition: background-color 0.3s ease;
 }
-.crea:hover {
+.modifica:hover {
     background-color: #0056b3; /* Colore più scuro quando il mouse è sopra */
 }
 .indietro{

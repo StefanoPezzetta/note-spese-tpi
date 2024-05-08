@@ -18,7 +18,7 @@
     <hr class="separatore">
     <div class="container">
     <h2>Creazione nuova nota</h2>
-    <img src="/images/cartapenna.png">
+    <img class="image" src="images/cartapenna.png">
     <form action="aggiungi.script.php" method="POST" id="aggiungiForm" class="form-container">
         <div class="contenutoForm">
             <!-- Selezione principale: Categoria -->
@@ -44,23 +44,14 @@
             <option value="altro">Altro</option>
         </select><br>
         <input type="number" id="costo" name="costo" placeholder="Costo" required><br>
-
-        
-            
+   
         </div>
-        
 
-        
-        
-        
-        
-        
-        
-        <button type="submit">Aggiungi</button>
+        <button class="crea" type="submit">Crea nota</button>
 
     </form>
     
-    <a href="home.php">Indietro</a>
+    <a class="indietro" href="home.php">Indietro</a>
     </div>
 </div>
 
