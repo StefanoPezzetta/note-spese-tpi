@@ -6,14 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGGIUNGI NOTA</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <link rel="stylesheet" href="aggiungi.css">
+
+
+</head>
+
+<body>
+<div class="vertical-bar"></div>
+<div class="content">
+<h1 class="title"><span class="highlight">Spes</span>Hub</h1>
+    <hr class="separatore">
+    <div class="container">
+    <h2>Creazione nuova nota</h2>
+    <img src="/images/cartapenna.png">
+    <form action="aggiungi.script.php" method="POST" id="aggiungiForm" class="form-container">
+        <div class="contenutoForm">
+            <!-- Selezione principale: Categoria -->
+        <select id="categoria" name="categoria" required>
+            <option value="" disabled selected>Descrizione</option>
+            <option value="trasporto">Trasporto</option>
+            <option value="alloggio">Alloggio</option>
+            <option value="pasto">Pasto</option>
+        </select><br>
+        <!-- Selezione secondaria: Descrizione -->
+        <select id="descrizione" name="descrizione" required class="hidden">
+        </select><br>
+        <input type="date" id="data" name="data" placeholder="Data" required><br>
+        <!-- Motivazione:-->
+        <select id="motivazione" name="motivazione" required>
+            <option value="" disabled selected>Motivazione viaggio</option>
+            <option value="manutenzione">Manutenzione</option>
+            <option value="convention">Convention</option>
+            <option value="conferenza">Conferenza</option>
+            <option value="trasporto">Trasporto</option>
+            <option value="installazione">Installazione</option>
+            <option value="sopralluogo">Sopralluogo</option>
+            <option value="altro">Altro</option>
+        </select><br>
+        <input type="number" id="costo" name="costo" placeholder="Costo" required><br>
+
+        
+            
+        </div>
+        
+
+        
+        
+        
+        
+        
+        
+        <button type="submit">Aggiungi</button>
+
+    </form>
+    
+    <a href="home.php">Indietro</a>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Selezione principale (categoria)
-        const categorySelect = document.getElementById('categoria');
+    const categorySelect = document.getElementById('categoria');
         // Selezione secondaria (descrizione)
-        const descriptionSelect = document.getElementById('descrizione');
+    const descriptionSelect = document.getElementById('descrizione');
     
     function updateOptions() {
+    descriptionSelect.classList.remove('hidden');
     // Cancella le opzioni esistenti
     descriptionSelect.innerHTML = '';
     
@@ -93,47 +154,3 @@ function setSelect(descriptionSelect, defaultOption) {
         }
 
     </script>
-</head>
-
-<body>
-    <form action="aggiungi.script.php" method="POST" id="aggiungiForm" class="hidden">
-        <!-- Motivazione:-->
-        <label for="motivazione">Motivazione:</label>
-        <select id="motivazione" name="motivazione" required>
-            <option value="" disabled selected>Seleziona una motivazione</option>
-            <option value="manutenzione">Manutenzione</option>
-            <option value="convention">Convention</option>
-            <option value="conferenza">Conferenza</option>
-            <option value="trasporto">Trasporto</option>
-            <option value="installazione">Installazione</option>
-            <option value="sopralluogo">Sopralluogo</option>
-            <option value="altro">Altro</option>
-        </select><br>
-
-        <!-- Selezione principale: Categoria -->
-        <label for="categoria">Categoria:</label>
-        <select id="categoria" name="categoria" required>
-            <option value="" disabled selected>Seleziona una categoria</option>
-            <option value="trasporto">Trasporto</option>
-            <option value="alloggio">Alloggio</option>
-            <option value="pasto">Pasto</option>
-        </select><br>
-
-        <!-- Selezione secondaria: Descrizione -->
-        <label for="descrizione">Descrizione:</label>
-        <select id="descrizione" name="descrizione" required>
-        </select><br>
-        
-        <label for="costo">Costo:</label>
-        <input type="number" id="costo" name="costo" required><br>
-        
-        <label for="data">Data:</label>
-        <input type="date" id="data" name="data" required><br>
-        
-        <button type="submit">Aggiungi</button>
-    </form>
-    
-    <a href="home.php">Indietro</a>
-</body>
-
-</html>

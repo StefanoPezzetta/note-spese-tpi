@@ -17,6 +17,7 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+
 /* Barra verticale */
 .vertical-bar {
     position: fixed; /* Fissa la barra sul lato sinistro della pagina */
@@ -76,6 +77,10 @@ h3{
     width: 12px;  /* Larghezza ridotta */
     height: 12px; /* Altezza ridotta */
     
+}
+
+.delete-icon{
+    width: 1%;
 }
 .distanziate {
     display: flex;

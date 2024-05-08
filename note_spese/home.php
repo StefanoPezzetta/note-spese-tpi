@@ -28,14 +28,8 @@
         <span>Costo</span>
     </h4>
     <div id="elementi"></div>
-
-
-
-
-
-
-        <button onclick='filtraForm()'>Filtra</button>
-        <div id = "formFiltraNota" class="hidden">
+        <img src="images/filtro.png" onclick="filtraForm()" style="cursor:pointer; width: 1.5%;">
+        <div id="formFiltraNota" class="hidden">
             <label for="data">Data inizio:</label> 
             <input type="date" id="dataInizio" name="dataInizio"><br>
             <label for="data">Data fine:</label>
@@ -191,13 +185,15 @@
         }
     });
 
-    // Creazione del pulsante di eliminazione associato all'elemento
-    const bottoneDelete = document.createElement('button');
-    bottoneDelete.textContent = 'Elimina nota';
-    bottoneDelete.classList.add('nota-elimina');
-    bottoneDelete.addEventListener('click', function() {
-        deleteElement(nota.id);
-    });
+    const deleteImg = document.createElement('img');
+deleteImg.src = 'images/cestino.png'; // Imposta il percorso effettivo dell'immagine di eliminazione
+deleteImg.alt = 'Elimina'; // Testo alternativo per l'immagine
+deleteImg.classList.add('delete-icon');
+
+// Aggiungi un gestore di eventi al clic sull'immagine per eseguire la funzione deleteElement
+deleteImg.addEventListener('click', function() {
+    deleteElement(nota.id);
+});
 
     // Aggiunta delle parti create all'elemento principale
     elemento.appendChild(idUtente);
@@ -207,11 +203,11 @@
     elemento.appendChild(sottocategoriaNota);
     elemento.appendChild(dataNota);
     elemento.appendChild(costoNota);
-    elemento.appendChild(bottoneDelete);
+    elemento.appendChild(deleteImg);
     
     // Aggiunta dell'elemento al contenitore
     elementiDiv.appendChild(elemento);
-}
+} 
 
     }
 }
