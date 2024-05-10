@@ -19,6 +19,7 @@
     <br>
     <button class="modifica" onclick='modificaNota()'><img src="images/modifica.png"/></button>
     <br>
+    <button onclick="logout()">Logout</button>
 
     <hr class="separatore">
     <h4 class="distanziate">
@@ -233,7 +234,30 @@ deleteImg.addEventListener('click', function() {
         document.getElementById('formFiltraNota').classList.remove('hidden');
     }
 
+    function logout(){
+        const confermaLogout = confirm("Sei sicuro di voler effettuare il logout?");
+        // Specifica l'URL a cui vuoi inviare la richiesta GET
+        if(confermaLogout){
+            const url = 'logout.php';
 
+        // Utilizza fetch per effettuare una richiesta GET all'URL specificato
+        fetch(url)
+        .then(response => {
+            // Verifica se la risposta è ok (status code 200)
+            if (response.ok) {
+            console.log('Richiesta GET completata con successo');
+            } else {
+            // Se la risposta non è ok, lancia un errore
+            throw new Error(`Errore nella richiesta: ${response.status}`);
+            }
+        })
+        .catch(error => {
+            // Gestisci eventuali errori
+            console.error('Errore:', error);
+        });
+        window.location.href = 'index.php';
+    }
+    }
 
     async function filtraData(dataInizio, dataFine, motivazione, categoria) {
             const dataToSend = {

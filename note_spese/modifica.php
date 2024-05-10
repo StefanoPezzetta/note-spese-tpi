@@ -11,6 +11,7 @@
 <div class="vertical-bar"></div>
 <div class="content">
 <h1 class="title"><span class="highlight">Spes</span>Hub</h1>
+<button onclick="logout()" >Logout</button>
 <hr class="separatore">
 <div class="container">
 
@@ -185,6 +186,30 @@ function updateOptions() {
         }
 
 }
+function logout(){
+        const confermaLogout = confirm("Sei sicuro di voler effettuare il logout?");
+        // Specifica l'URL a cui vuoi inviare la richiesta GET
+        if(confermaLogout){
+            const url = 'logout.php';
+
+        // Utilizza fetch per effettuare una richiesta GET all'URL specificato
+        fetch(url)
+        .then(response => {
+            // Verifica se la risposta è ok (status code 200)
+            if (response.ok) {
+            console.log('Richiesta GET completata con successo');
+            } else {
+            // Se la risposta non è ok, lancia un errore
+            throw new Error(`Errore nella richiesta: ${response.status}`);
+            }
+        })
+        .catch(error => {
+            // Gestisci eventuali errori
+            console.error('Errore:', error);
+        });
+        window.location.href = 'index.php';
+    }
+    }
     getNotaDaModificare(); 
 
     const categorySelect = document.getElementById('categoriaModifica');
