@@ -87,10 +87,17 @@
 
     function modificaNota() {
     console.log(idDaModificare);
+    if(idDaModificare != ""){
+        localStorage.setItem('idDaModificare', idDaModificare);
 
-    localStorage.setItem('idDaModificare', idDaModificare);
+        window.location.href = 'modifica.php';
+    }
+    else{
+        alert("Perfavore selezionare una nota da modificare");
+    }
 
-     window.location.href = 'modifica.php';
+
+    
  }
 
 
@@ -193,7 +200,10 @@ deleteImg.classList.add('delete-icon');
 
 // Aggiungi un gestore di eventi al clic sull'immagine per eseguire la funzione deleteElement
 deleteImg.addEventListener('click', function() {
-    deleteElement(nota.id);
+    const confermaEliminazione = confirm("Stai per eliminare questa nota dall'elenco delle note spese, sei sicuro di voler procedere?");
+    if(confermaEliminazione){
+        deleteElement(nota.id);
+    }
 });
 
     // Aggiunta delle parti create all'elemento principale

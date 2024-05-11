@@ -12,10 +12,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($data !== null) {
         $id = $data["id"];
-        $stmt = $mydb->prepare("DELETE FROM nota WHERE id = ?");
+        $stmt = $mydb->prepare("SELECT fkDescrizione FROM nota WHERE id = ?");
         $stmt->bind_param("i", $id);        
-        $stmt->execute();
+        if($stmt->execute()){
+            $stmt->bind_result($fkDescrizione);
+            $stmt->fetch(); 
+
+        }
         $stmt->close();
+
+        
+
+        $stmt3 = $mydb->prepare("DELETE FROM nota WHERE id = ?");
+        $stmt3->bind_param("i", $id);        
+        $stmt3->execute();
+        $stmt3->close();
+
+        $stmt2 = $mydb->prepare("DELETE FROM descrizione WHERE id = ?");
+        $stmt2->bind_param("i", $fkDescrizione);        
+        $stmt2->execute();
+        $stmt2->close();
     }
 }
 header("Location: home.php");

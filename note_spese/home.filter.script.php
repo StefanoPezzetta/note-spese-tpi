@@ -21,6 +21,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $_SESSION['user'];
     
     $stmt = null;
+   /*  $sqlQuery = "";
+
+    switch(true) {
+        case $dataInizio === '' && $dataFine === '' && $motivazione === "" && $categoria === '':
+            $sqlQuery = "SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ?";
+            $stmt = $mydb->prepare($sqlQuery);
+            $stmt->bind_param("i", $user);
+            break;
+        case $dataInizio === '' && $dataFine === '' && $motivazione !== '' && $categoria === '':
+            $sqlQuery = "SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ? AND nota.motivazione = ?";
+            $stmt = $mydb->prepare($sqlQuery);
+            $stmt->bind_param("is", $user, $motivazione);
+            break;
+        case $dataInizio === '' && $dataFine === '' && $motivazione === '' && $categoria !== '';
+            // Condizione per le note dell'utente con una categoria specifica SENZA MOTIVAZIONE
+            $stmt = $mydb->prepare("SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ? AND descrizione.descrizione = ?");
+            $stmt->bind_param("is", $user, $categoria);
+            break;
+        case $dataInizio === '' && $dataFine === '' && $motivazione !== '' && $categoria !== '';
+            // Condizione per le note dell'utente con una categoria specifica CON MOTIVAZIONE
+            $stmt = $mydb->prepare("SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ? AND nota.motivazione = ? AND descrizione.descrizione = ?");
+            $stmt->bind_param("iss", $user, $motivazione, $categoria);
+            break;
+        case $dataInizio !== '' && $dataFine === ''  && $motivazione === '' && $categoria === '';
+            // Condizione per le note dell'utente con dataInizio SENZA MOTIVAZIONE
+            $stmt = $mydb->prepare("SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ? AND data >= ?");
+            $stmt->bind_param("is", $user, $dataInizio);
+            break;
+        case $dataInizio !== '' && $dataFine === ''  && $motivazione !== '' && $categoria === '';
+            // Condizione per le note dell'utente con dataInizio CON MOTIVAZIONE
+            $stmt = $mydb->prepare("SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ? AND nota.motivazione = ? AND data >= ?");
+            $stmt->bind_param("iss", $user, $motivazione, $dataInizio);
+            break;
+        case $dataInizio !== '' && $dataFine === '' && $motivazione === '' && $categoria !== '';
+            // Condizione per le note dell'utente con dataInizio CON MOTIVAZIONE
+            $stmt = $mydb->prepare("SELECT nota.id, nota.data, nota.motivazione, descrizione.descrizione, descrizione.sottocategoria, nota.costo FROM nota JOIN descrizione ON nota.fkDescrizione = descrizione.id WHERE nota.fkUtente = ? AND nota.motivazione = ? AND data >= ?");
+            $stmt->bind_param("iss", $user, $motivazione, $dataInizio);
+            break;
+            default:
+            // Caso predefinito se nessuna condizione è soddisfatta
+            break;
+    } */
 
     if ($dataInizio === '' && $dataFine === '' && $motivazione === "" && $categoria === '') {
         // Condizione per tutte le note dell'utente 
