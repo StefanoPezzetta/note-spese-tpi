@@ -19,7 +19,7 @@
     <br>
     <button class="modifica" onclick='modificaNota()'><img src="images/modifica.png"/></button>
     <br>
-    <button onclick="logout()">Logout</button>
+    <button class="logout" onclick="logout()">Logout</button>
 
     <hr class="separatore">
     <h4 class="distanziate">
@@ -29,7 +29,7 @@
         <span>Costo</span>
     </h4>
     <div class="elementi" id="elementi"></div>
-        <img src="images/filtro.png" onclick="filtraForm()" style="cursor:pointer; width: 1.5%;">
+        <img class="filtra" src="images/filtro.png" onclick="filtraForm()" style="cursor:pointer; width: 1.5%;">
         <div id="formFiltraNota" class="hidden">
             <label for="data">Data inizio:</label> 
             <input type="date" id="dataInizio" name="dataInizio"><br>
@@ -169,14 +169,14 @@
     
     
     // Creazione della descrizione con una classe CSS
-    const descrizioneNota = document.createElement('span');
-    descrizioneNota.classList.add('nota-descrizione');
-    descrizioneNota.textContent = `${nota.descrizione}-`;
+    const descrizioneSottocategoriaNota = document.createElement('span');
+    descrizioneSottocategoriaNota.classList.add('nota-descrizione-sottocategoria');
+    descrizioneSottocategoriaNota.textContent = `${nota.descrizione}-${nota.sottocategoria}`;
     
     // Creazione della sottocategoria con una classe CSS
-    const sottocategoriaNota = document.createElement('span');
+    /* const sottocategoriaNota = document.createElement('span');
     sottocategoriaNota.classList.add('nota-sottocategoria');
-    sottocategoriaNota.textContent = `${nota.sottocategoria}`;
+    sottocategoriaNota.textContent = `${nota.sottocategoria}`; */
     
     // Creazione del costo con una classe CSS
     const costoNota = document.createElement('span');
@@ -218,9 +218,9 @@ deleteImg.addEventListener('click', function() {
     elemento.appendChild(idUtente);
     elemento.appendChild(checkbox);
     elemento.appendChild(motivazioneNota);
-    elemento.appendChild(descrizioneNota);
-    elemento.appendChild(sottocategoriaNota);
-    elemento.appendChild(dataNota);
+    elemento.appendChild(descrizioneSottocategoriaNota );
+/*     elemento.appendChild(sottocategoriaNota);
+ */    elemento.appendChild(dataNota);
     elemento.appendChild(costoNota);
     elemento.appendChild(deleteImg);
     

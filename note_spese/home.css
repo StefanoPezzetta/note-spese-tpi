@@ -97,16 +97,22 @@ h3{
     display: flex;
     justify-content: flex-start; 
 }
-
+.nota-element span.nota-motivazione{
+    margin-right: 43px;
+}
 .nota-element span + span {
-    margin-left: 80px;
+    margin-left: 70px;
 }
 
-.nota-element span.nota-descrizione + span.nota-sottocategoria {
-    margin-left: 0;
+/* .nota-element span.nota-descrizione + span.nota-sottocategoria {
+    margin-left: -39px;
+} */
+.nota-element span.nota-descrizione-sottocategoria{
+    width: 160px;
+
 }
 .nota-element span.nota-costo {
-    margin-left: 455px; 
+    margin-left: 430px; 
 }
 .filtro{
     border: none; 
@@ -167,4 +173,24 @@ h3{
 
 #formFiltraNota button:hover {
     background-color: #004080;
+}
+.filtra{
+    position: fixed;
+    right: 44px;
+    top: 230px;
+    width: 6px; 
+    height: 22px;
+}
+.logout{
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    position: fixed;
+    top: 69px;
+    right: 52px;
+    /* Altri stili desiderati, come padding, margin, ecc. */
+}
+.elementi{
+    margin-bottom: 25px;
 }
