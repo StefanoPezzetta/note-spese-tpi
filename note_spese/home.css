@@ -9,7 +9,6 @@
     0 0 2em #ffffff,
     0 0 0.2em #ffffff;
   }
-/* Reset di margin e padding */
 body, html {
     margin: 0;
     padding: 0;
@@ -18,14 +17,13 @@ body, html {
 }
 
 
-/* Barra verticale */
 .vertical-bar {
-    position: fixed; /* Fissa la barra sul lato sinistro della pagina */
-    top: 0; /* Allinea la barra con la parte superiore della pagina */
-    left: 0; /* Posiziona la barra a sinistra */
-    width: 22%; /* Larghezza della barra */
-    height: 100%; /* Altezza della barra (fino alla fine della pagina) */
-    background-color: #087AE3; /* Colore di sfondo blu */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 22%; 
+    height: 100%; 
+    background-color: #087AE3; 
 }
 .content{
     margin-left: 25%;
@@ -41,41 +39,39 @@ h3{
     top: 60px;
 }
 .aggiungi {
-    background-color: #087AE3; /* Colore di sfondo blu */
-    color: #fff; /* Colore del testo bianco */
-    padding: 10px 20px; /* Padding interno */
-    border: none; /* Rimuove il bordo predefinito */
-    border-radius: 15px; /* Arrotonda gli angoli */
-    cursor: pointer; /* Cambia il cursore a mano */
-    font-size: 16px; /* Dimensione del testo */
-    margin-right: 20px; /* Spazio a destra */
-    transition: background-color 0.3s; /* Transizione per il colore di sfondo */
+    background-color: #087AE3; 
+    color: #fff; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px; 
+    cursor: pointer; 
+    font-size: 16px;
+    margin-right: 20px; 
+    transition: background-color 0.3s;
     text-decoration: none;
     position: fixed;
     right: 25px;
     
 }
 
-/* Effetto hover per il pulsante */
 .aggiungi:hover {
-    background-color: #2980b9; /* Colore di sfondo più scuro quando si passa il mouse */
+    background-color: #2980b9; 
 }
 
-/* Contenuto principale */
 .content {
-    flex-grow: 1; /* Permette al contenuto di espandersi per riempire lo spazio disponibile */
-    padding: 20px; /* Aggiunge un po' di spazio intorno al contenuto */
+    flex-grow: 1; 
+    padding: 20px; 
 }
 .modifica{
-    border: none; /* Rimuove il bordo predefinito */
-    cursor: pointer; /* Cambia il cursore a mano */
-    margin-right: 20px; /* Spazio a destra */
+    border: none; 
+    cursor: pointer; 
+    margin-right: 20px; 
     text-decoration: none;
     position: fixed;
-    right: 25px;
+    right: 80px;
     background-color: #fff;
-    width: 12px;  /* Larghezza ridotta */
-    height: 12px; /* Altezza ridotta */
+    width: 12px; 
+    height: 12px; 
     
 }
 
@@ -84,35 +80,91 @@ h3{
 }
 .distanziate {
     display: flex;
-    justify-content: flex-start; /* Allinea gli elementi a sinistra */
+    justify-content: flex-start; 
 }
 
 .distanziate span {
-    margin-right: 140px; /* Aggiungi uno spazio a destra di ciascun elemento <span> */
+    margin-right: 140px;
 }
 
 .distanziate span:last-child {
-    margin-right: 0; /* Rimuove lo spazio dall'ultimo elemento */
+    margin-right: 0;
     margin-left: 350px;
 }
-/* Per distanziare gli elementi dentro il contenitore */
 
 
 .nota-element {
-    display: flex; /* Imposta il display come flex */
-    justify-content: flex-start; /* Allinea gli elementi a sinistra */
+    display: flex;
+    justify-content: flex-start; 
 }
 
-/* Aggiungi margine destro di 20px solo tra i `span` consecutivi */
 .nota-element span + span {
-    margin-left: 135px;
+    margin-left: 80px;
 }
 
-/* Rimuovi il margine sinistro specifico tra "descrizione" e "sottocategoria" */
 .nota-element span.nota-descrizione + span.nota-sottocategoria {
     margin-left: 0;
 }
 .nota-element span.nota-costo {
     margin-left: 455px; 
-    margin-right: 20px;
+}
+.filtro{
+    border: none; 
+    cursor: pointer; 
+    margin-right: 20px; 
+    text-decoration: none;
+    position: fixed;
+    right: 25px;
+    background-color: #fff;
+    top: 230px;
+    
+}
+/* Definizione delle classi CSS per colorare lo sfondo */
+.nota-element:nth-child(even) {
+    background-color: #127FE4; 
+}
+.nota-element:nth-child(odd) {
+    background-color: #ffff;    
+}
+.nota-element span {
+    display: hidden;
+    width: 100px; /* Imposta l'altezza desiderata per tutti gli span */
+    vertical-align: top; /* Allinea i contenuti in cima */
+}
+#formFiltraNota {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #007bff;
+    border-radius: 6px;
+    color: white;
+}
+
+#formFiltraNota label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#formFiltraNota input[type="date"],
+#formFiltraNota select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 4px;
+}
+
+#formFiltraNota button {
+    background-color: #0056b3;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#formFiltraNota button:hover {
+    background-color: #004080;
 }

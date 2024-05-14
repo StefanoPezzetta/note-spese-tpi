@@ -28,7 +28,7 @@
         <span>Data</span>
         <span>Costo</span>
     </h4>
-    <div id="elementi"></div>
+    <div class="elementi" id="elementi"></div>
         <img src="images/filtro.png" onclick="filtraForm()" style="cursor:pointer; width: 1.5%;">
         <div id="formFiltraNota" class="hidden">
             <label for="data">Data inizio:</label> 
@@ -54,6 +54,7 @@
                 <option value="pasto">Pasto</option>
             </select><br>        
             <button onclick="filtraData(document.getElementById('dataInizio').value, document.getElementById('dataFine').value, document.getElementById('motivazione').value, document.getElementById('categoria').value)">Filtra</button>
+            <button onclick="chiudiform()">Chiudi</button>
         </div>
     </div>
 
@@ -99,6 +100,13 @@
 
     
  }
+
+ function chiudiform() {
+    var element = document.getElementById("formFiltraNota");
+    if (element) {
+        element.classList.add('hidden');
+    }
+}
 
 
     async function getData() {
@@ -173,7 +181,7 @@
     // Creazione del costo con una classe CSS
     const costoNota = document.createElement('span');
     costoNota.classList.add('nota-costo');
-    costoNota.textContent = `${nota.costo}`;
+    costoNota.textContent = `€ ${nota.costo}`;
     
     // Creazione del checkbox associato all'elemento
     const checkbox = document.createElement('input');

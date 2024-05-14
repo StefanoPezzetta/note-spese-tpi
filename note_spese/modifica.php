@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modifica_nota</title>
     <link rel="stylesheet" href="modifica.css">
 
 </head>
@@ -11,7 +11,6 @@
 <div class="vertical-bar"></div>
 <div class="content">
 <h1 class="title"><span class="highlight">Spes</span>Hub</h1>
-<button onclick="logout()" >Logout</button>
 <hr class="separatore">
 <div class="container">
 
