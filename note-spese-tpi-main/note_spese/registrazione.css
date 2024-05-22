@@ -1,0 +1,147 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #87cef8;
+}
+
+.logo{
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 120px;
+  
+}
+
+.separatore {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  border: none;
+  height: 1px;
+  width: 90%;
+  background-color: #333;
+}
+
+.title {
+  font-family: inter;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bentornato {
+  font-weight: bold;
+  text-shadow:
+  2px 3px 8px rgba(0, 132, 255, 0.7),
+  0 0 1em #0084ff,
+  0 0 0.2em #0084ff;
+  font-size: 30px;
+  color: #ffffff;
+}
+
+
+.highlight {
+  color: #007bff;
+  font-weight: bold;
+  text-shadow:
+  2px 3px 9px rgb(255, 255, 255),
+  0 0 2em #ffffff,
+  0 0 0.2em #ffffff;
+}
+
+.container {
+  border-color: #0056b3;
+  width: 600px;
+  height: 450px;
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  transition: border 0.3s ease, transform 0.6s ease;
+  box-shadow: 0 0 100px rgba(8, 122, 227, 1.4);
+  background-color: #ffff;
+}
+
+.container:hover {
+  border-color: #007bff;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+h2 {
+  margin-left: -230px;
+
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-left: -230px;
+
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 300px;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #007fd4b2;
+  border-radius: 15px;
+  background-color: #DBDBDB;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.5s ease; 
+}
+
+button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: scale(1.15); /* Scale the button slightly on hover */
+
+}
+
+.register-link {
+  margin-top: 20px;
+}
+
+.register-link p {
+  margin: 0;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 45px;
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover {
+  text-decoration: none;
+  transform: translateX(-3px) scale(1.3);
+}
