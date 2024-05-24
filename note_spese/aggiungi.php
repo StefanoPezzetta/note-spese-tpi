@@ -148,7 +148,7 @@ function setSelect(descriptionSelect, defaultOption) {
             descriptionSelect.size = 1; // Reset la dimensione per assicurarsi che il menu a discesa si apra correttamente
             descriptionSelect.size = 3; // Modifica la dimensione per far sì che il menu appaia più grande e l'utente veda più opzioni
         }else{
-            console.log("pasto");
+            console.log("Pasto");
             descriptionSelect.size = 1; // Reset la dimensione per assicurarsi che il menu a discesa si apra correttamente
             descriptionSelect.size = 4; // Modifica la dimensione per far sì che il menu appaia più grande e l'utente veda più opzioni
         }

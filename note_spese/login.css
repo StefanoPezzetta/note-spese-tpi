@@ -4,11 +4,10 @@ body, html {
   background-color: #87cef8;
 }
 
-.logo{
+.logo {
   position: absolute;
   margin-top: 10px;
   margin-left: 120px;
-  
 }
 
 .separatore {
@@ -31,21 +30,20 @@ body, html {
 .bentornato {
   font-weight: bold;
   text-shadow:
-  2px 3px 8px rgba(0, 132, 255, 0.7),
-  0 0 1em #0084ff,
-  0 0 0.2em #0084ff;
+    2px 3px 8px rgba(0, 132, 255, 0.7),
+    0 0 1em #0084ff,
+    0 0 0.2em #0084ff;
   font-size: 30px;
   color: #ffffff;
 }
-
 
 .highlight {
   color: #007bff;
   font-weight: bold;
   text-shadow:
-  2px 3px 9px rgb(255, 255, 255),
-  0 0 2em #ffffff,
-  0 0 0.2em #ffffff;
+    2px 3px 9px rgb(255, 255, 255),
+    0 0 2em #ffffff,
+    0 0 0.2em #ffffff;
 }
 
 .container {
@@ -71,13 +69,11 @@ body, html {
 
 h2 {
   margin-left: -230px;
-
   margin-bottom: 20px;
 }
 
 .form-group {
   margin-left: -230px;
-
   margin-bottom: 20px;
 }
 
@@ -97,21 +93,36 @@ input[type="password"] {
   background-color: #DBDBDB;
 }
 
-button {
+button, .button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.5s ease; 
+  transition: background-color 0.3s ease, transform 0.5s ease;
 }
 
-button:hover {
+button:hover, .button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.back-button {
+  text-decoration: none;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.5s ease;
+}
+
+.back-button:hover {
   background-color: #0056b3;
   border-color: #0056b3;
   transform: scale(1.15); /* Scale the button slightly on hover */
-
 }
 
 .register-link {

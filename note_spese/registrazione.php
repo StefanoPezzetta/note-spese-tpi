@@ -17,7 +17,7 @@
 
     <a href="index.php" class="back-link">&#8592;</a>
     <a href="index.php">
-    <img src="images/logo.png" alt="logo" class="logo" style="max-width: 40%; height: 40%;">
+    <img src="images/logo.png" alt="logo" class="logo" style="max-width: 35%; height: 35%;">
 </a>
 
 <div class="form-group">
@@ -34,7 +34,7 @@
                 </div>
             <div id = "errore" ></div>
             <div class="form-group">
-            <a href="index.php" class="button">Indietro</a>
+            <a href="index.php" class="back-button">Indietro</a>
                 <button onclick = registrati()>Registrati</button>
             </div>
         <div class="register-link">

@@ -181,6 +181,7 @@ h3{
 #formFiltraNota button:hover {
     background-color: #ffffff;
 }
+
 .filtra{
     position: fixed;
     right: 44px;
@@ -189,9 +190,8 @@ h3{
     height: 22px;
 }
 
-
 .logout {
-    font-weight: bold;
+    font-weight: 550;
     background-color: transparent;
     border: none;
     color: red;
@@ -214,19 +214,17 @@ button:hover {
     margin-bottom: 25px;
 }
 .utente {
-    /* Stili per il div utente */
     font-size: 1.2em;
     color: #333;
 }
 
 .saluto {
-    /* Stili per il saluto */
     font-weight: bold;
-    color: #FF5733; /* Ad esempio, arancione */
+    color: #ff380c;
 }
 
 .nome-cognome {
-    /* Stili per il nome e cognome */
     font-weight: normal;
-    color: #007BFF; /* Ad esempio, blu */
+    color: #007BFF;
+    
 }

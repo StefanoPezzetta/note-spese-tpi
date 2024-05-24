@@ -29,10 +29,10 @@
             </div>
             <div id = "errore"></div>
             <div class="form-group">
-            <a href="index.php" class="button">Indietro</a>
-                <button onclick="login()">Login</button>
+            <a href="index.php" class="back-button">Indietro</a>
+            <button onclick="login()">Login</button>
             </div>
-        <div class="register-link">
+            <div class="register-link">
             <p>Non hai un account? <a href="registrazione.php">Registrati</a></p>
         </div>
     </div>

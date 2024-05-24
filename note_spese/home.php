@@ -256,10 +256,6 @@ deleteImg.addEventListener('click', function() {
     }
 }
 
-
-
-
-
     async function getSessionData(){
         fetch('getSessionData.php')
         .then(response => response.json())
