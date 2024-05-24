@@ -25,7 +25,7 @@
                 <input type="text" id="email" placeholder="Email" name="email" required>
             </div>
             <div class="form-group">
-                <input type="text" id="pw" placeholder="Password" name="pw" required>
+                <input type="password" id="pw" placeholder="Password" name="pw" required>
             </div>
             <div id = "errore"></div>
             <div class="form-group">

@@ -72,12 +72,14 @@ h3{
     background-color: #fff;
     width: 12px; 
     height: 12px; 
-    
 }
 
 .delete-icon{
+    margin-top: 2.5px;
     width: 1%;
+    height: 100%;
 }
+
 .distanziate {
     display: flex;
     justify-content: flex-start; 
@@ -92,11 +94,15 @@ h3{
     margin-left: 350px;
 }
 
+.cestino{
+    height: 2px;
+}
 
 .nota-element {
     display: flex;
     justify-content: flex-start; 
 }
+
 .nota-element span.nota-motivazione{
     margin-right: 43px;
 }
@@ -111,6 +117,7 @@ h3{
     width: 160px;
 
 }
+
 .nota-element span.nota-costo {
     margin-left: 430px; 
 }
@@ -122,11 +129,11 @@ h3{
     position: fixed;
     right: 25px;
     background-color: #fff;
-    top: 230px;
-    
+    top: 235px;
 }
-/* Definizione delle classi CSS per colorare lo sfondo */
+
 .nota-element:nth-child(even) {
+    color: white;
     background-color: #127FE4; 
 }
 .nota-element:nth-child(odd) {
@@ -134,15 +141,15 @@ h3{
 }
 .nota-element span {
     display: hidden;
-    width: 100px; /* Imposta l'altezza desiderata per tutti gli span */
-    vertical-align: top; /* Allinea i contenuti in cima */
+    width: 100px;
+    vertical-align: top;
 }
 #formFiltraNota {
     max-width: 300px;
     margin: 0 auto;
     padding: 15px;
-    background-color: #007bff;
-    border-radius: 6px;
+    background-color: #087AE3;
+    border-radius: 20px;
     color: white;
 }
 
@@ -172,16 +179,19 @@ h3{
 }
 
 #formFiltraNota button:hover {
-    background-color: #004080;
+    background-color: #ffffff;
 }
 .filtra{
     position: fixed;
     right: 44px;
-    top: 230px;
+    top: 259px;
     width: 6px; 
     height: 22px;
 }
-.logout{
+
+
+.logout {
+    font-weight: bold;
     background-color: transparent;
     border: none;
     color: red;
@@ -189,8 +199,34 @@ h3{
     position: fixed;
     top: 69px;
     right: 52px;
-    /* Altri stili desiderati, come padding, margin, ecc. */
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* Add transition effects */
+
 }
+
+button:hover {
+    color: rgb(230, 0, 0); /* Change text color on hover */
+    transform: scale(1.1); /* Slightly increase the size on hover */
+}
+
+
+
 .elementi{
     margin-bottom: 25px;
+}
+.utente {
+    /* Stili per il div utente */
+    font-size: 1.2em;
+    color: #333;
+}
+
+.saluto {
+    /* Stili per il saluto */
+    font-weight: bold;
+    color: #FF5733; /* Ad esempio, arancione */
+}
+
+.nome-cognome {
+    /* Stili per il nome e cognome */
+    font-weight: normal;
+    color: #007BFF; /* Ad esempio, blu */
 }

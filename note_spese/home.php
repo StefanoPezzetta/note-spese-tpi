@@ -14,6 +14,7 @@
     <h1 class="title"><span class="highlight">Spes</span>Hub</h1>
     <hr class="separatore">
     <a class="aggiungi" href="aggiungi.php">+ Nuovo</a>
+    <div id = "utente"></div>
     <h2>Note spese:</h2>
     <h3>Tutte</h3>
     <br>
@@ -61,6 +62,8 @@
 
 
     <script>
+        let user = "";
+        let notes = "";
         let idDaModificare = "";
     
         async function deleteDataFromServer(id) {
@@ -123,19 +126,45 @@
                         return;
                     }
 
-                    // Memorizza i dati ricevuti nella variabile notes
-                    let notes = data;
+                    user = data.user;
+                    notes = data.notes;
+                    console.log(user);
+                    console.log(notes); 
 
-                    // Ora puoi utilizzare la variabile notes per accedere ai dati ricevuti
-                    console.log(notes); // Esempio di utilizzo: visualizza i dati nella console
-
-                    createPage(notes);
+                    createPage(notes, user);
                 })
                 .catch(elementiDiv.innerHTML = "non sono presenti note spese");
     }
 
 
-    function createPage(notes) {
+    function createPage(notes, user) {
+        if(utente ===""){
+            console.log("errore");
+        }
+        else{
+            const utenteDiv = document.getElementById('utente');
+            utenteDiv.innerHTML = "";
+
+            // Crea l'elemento span per il saluto
+            const salutoSpan = document.createElement('span');
+            salutoSpan.textContent = 'Bentornato';
+            salutoSpan.classList.add('saluto');
+
+            // Crea l'elemento span per il nome e cognome
+            const nomeCognomeSpan = document.createElement('span');
+            nomeCognomeSpan.textContent = `${user.nome} ${user.cognome}`;
+            nomeCognomeSpan.classList.add('nome-cognome');
+
+            // Aggiungi i span creati al div utente
+            utenteDiv.appendChild(salutoSpan);
+            utenteDiv.appendChild(document.createTextNode(' '));
+            utenteDiv.appendChild(nomeCognomeSpan);
+
+            // Aggiungi la classe al div utente
+            utenteDiv.classList.add('utente');
+
+
+        }
     if (notes === 0) {
         console.log("errore");
     } else {
@@ -173,10 +202,6 @@
     descrizioneSottocategoriaNota.classList.add('nota-descrizione-sottocategoria');
     descrizioneSottocategoriaNota.textContent = `${nota.descrizione}-${nota.sottocategoria}`;
     
-    // Creazione della sottocategoria con una classe CSS
-    /* const sottocategoriaNota = document.createElement('span');
-    sottocategoriaNota.classList.add('nota-sottocategoria');
-    sottocategoriaNota.textContent = `${nota.sottocategoria}`; */
     
     // Creazione del costo con una classe CSS
     const costoNota = document.createElement('span');
@@ -239,10 +264,20 @@ deleteImg.addEventListener('click', function() {
         fetch('getSessionData.php')
         .then(response => response.json())
         .then(data => {
-            // Utilizza i dati ottenuti dalla sessione PHP
-            console.log(data);
-            createPage(data);
-        })
+                    // Verifica se la richiesta è stata eseguita correttamente
+                    if (data.hasOwnProperty('error')) {
+                        // Se la richiesta ha restituito un errore, gestiscilo qui
+                        console.error('Si è verificato un errore durante l\'esecuzione della query:', data.error);
+                        return;
+                    }
+
+                    user = data.user;
+                    notes = data.notes;
+                    console.log(user);
+                    console.log(notes); 
+
+                    createPage(notes, user);
+                })
         .catch(error => console.error('Errore durante il recupero dei dati della sessione:', error));
     }
 
